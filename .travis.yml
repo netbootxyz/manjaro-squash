@@ -7,18 +7,18 @@ services:
 
 env:
   global:
-    - BRANCH="BRANCH_HERE"
-    - GITHUB_ENDPOINT="netbootxyz/REPO_HERE"
+    - BRANCH="master"
+    - GITHUB_ENDPOINT="netbootxyz/manjaro-squash"
     - DEBIAN_FRONTEND="noninteractive"
     - BUILD_TYPE="iso_extraction"
 
 branches:
   only:
-    - 'BRANCH_HERE'
+    - 'master'
 if: type != pull_request AND tag IS blank
 script:
   - |
-    export EXTERNAL_VERSION=$(CUSTOM_COMMAND_TO_DETERMINE_VERSION)
+    export EXTERNAL_VERSION="18.1.0"
   - wget https://raw.githubusercontent.com/netbootxyz/build-pipelines/master/build.sh && chmod +x build.sh
   - git config --local user.name $GIT_USERNAME
   - git config --local user.email $GIT_EMAIL

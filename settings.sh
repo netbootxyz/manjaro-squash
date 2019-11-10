@@ -1,6 +1,5 @@
-URL="http://releases.ubuntu.com/18.04/ubuntu-REPLACE_VERSION-desktop-amd64.iso.torrent"
-TYPE=torrent or file
+URL="https://osdn.net/projects/manjaro/storage/architect/18.1.0/manjaro-architect-18.1.0-stable-x86_64.iso"
+TYPE=file
 CONTENTS="\
-casper/initrd|initrd
-casper/vmlinuz|vmlinuz
-casper/filesystem.squashfs|filesystem.squashfs"
+manjaro/x86_64/livefs.sfs|livefs.sfs
+manjaro/x86_64/rootfs.sfs|rootfs.sfs"

@@ -1,7 +1,10 @@
 endpoints:
-  unique-key-name-used-as-menu-variable:
-    path: /ubuntu-squash/releases/download/REPLACE_RELEASE_NAME/
+  manjaro-18.1.0-default-squash:
+    path: /manjaro-squash/releases/download/REPLACE_RELEASE_NAME/
     files:
-    - filesystem.squashfs
-    - initrd
-    - vmlinuz
+    - livefs.sfs
+    - rootfs.sfs
+    os: "manjaro"
+    version: "18.1.0"
+    flavor: "architect"
+    kernel: "manjaro-18.x-live-kernel"
