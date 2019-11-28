@@ -1,10 +1,12 @@
 endpoints:
-  manjaro-18.1.0-default-squash:
+  manjaro-18.1.0-gnome-squash:
     path: /manjaro-squash/releases/download/REPLACE_RELEASE_NAME/
     files:
     - livefs.sfs
     - rootfs.sfs
+    - mhwdfs.sfs
+    - desktopfs.sfs
     os: "manjaro"
     version: "18.1.0"
-    flavor: "architect"
+    flavor: "GNOME"
     kernel: "manjaro-18.x-live-kernel"

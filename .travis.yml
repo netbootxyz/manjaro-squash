@@ -7,14 +7,14 @@ services:
 
 env:
   global:
-    - BRANCH="master"
+    - BRANCH="18.1.0-gnome"
     - GITHUB_ENDPOINT="netbootxyz/manjaro-squash"
     - DEBIAN_FRONTEND="noninteractive"
     - BUILD_TYPE="iso_extraction"
 
 branches:
   only:
-    - 'master'
+    - '18.1.0-gnome'
 if: type != pull_request AND tag IS blank
 script:
   - |
