@@ -1,4 +1,4 @@
-URL="https://osdn.net/projects/manjaro/storage/gnome/18.1.0/manjaro-gnome-18.1.0-stable-x86_64.iso"
+URL="https://osdn.net/projects/manjaro/storage/kde/18.1.0/manjaro-kde-18.1.0-stable-x86_64.iso"
 TYPE=file
 CONTENTS="\
 manjaro/x86_64/livefs.sfs|livefs.sfs
