@@ -7,4 +7,4 @@ endpoints:
     os: "manjaro"
     version: "18.1.0"
     flavor: "architect"
-    kernel: "manjaro-18.x-live-kernel"
+    kernel: "manjaro-18.1.0-architect-kernel"
