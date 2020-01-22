@@ -1,5 +1,5 @@
 endpoints:
-  manjaro-xfce-current:
+  manjaro-gnome-current:
     path: /manjaro-squash/releases/download/REPLACE_RELEASE_NAME/
     files:
     - livefs.sfs
@@ -10,5 +10,5 @@ endpoints:
     - vmlinuz
     os: "manjaro"
     version: "current"
-    flavor: "xfce"
-    kernel: "manjaro-xfce-current"
+    flavor: "gnome"
+    kernel: "manjaro-gnome-current"
