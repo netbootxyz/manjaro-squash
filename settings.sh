@@ -1,4 +1,4 @@
-URL="https://osdn.net/dl/manjaro/manjaro-xfce-REPLACE_VERSION.iso"
+URL="https://osdn.net/dl/manjaro/manjaro-kde-REPLACE_VERSION.iso"
 TYPE=file
 CONTENTS="\
 manjaro/x86_64/livefs.sfs|livefs.sfs

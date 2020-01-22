@@ -7,18 +7,18 @@ services:
 
 env:
   global:
-    - BRANCH="xfce-current"
+    - BRANCH="kde-current"
     - GITHUB_ENDPOINT="netbootxyz/manjaro-squash"
     - DEBIAN_FRONTEND="noninteractive"
     - BUILD_TYPE="initrd_patch"
 
 branches:
   only:
-    - 'xfce-current'
+    - 'kde-current'
 if: type != pull_request AND tag IS blank
 script:
   - |
-    export EXTERNAL_VERSION=$(curl -sL https://manjaro.org/download/official/xfce/ |awk -F '(manjaro-xfce-|.iso)' '/manjaro-xfce-/ {print $2;exit}')
+    export EXTERNAL_VERSION=$(curl -sL https://manjaro.org/download/official/kde/ |awk -F '(manjaro-kde-|.iso)' '/manjaro-kde-/ {print $2;exit}')
   - wget https://raw.githubusercontent.com/netbootxyz/build-pipelines/master/build.sh && chmod +x build.sh
   - git config --local user.name $GIT_USERNAME
   - git config --local user.email $GIT_EMAIL
