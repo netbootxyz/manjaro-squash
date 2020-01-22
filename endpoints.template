@@ -4,6 +4,8 @@ endpoints:
     files:
     - livefs.sfs
     - rootfs.sfs
+    - mhwdfs.sfs
+    - desktopfs.sfs
     - initrd
     - vmlinuz
     os: "manjaro"
