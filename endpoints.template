@@ -1,10 +1,12 @@
 endpoints:
-  manjaro-18.1.0-default-squash:
+  manjaro-default-current:
     path: /manjaro-squash/releases/download/REPLACE_RELEASE_NAME/
     files:
     - livefs.sfs
     - rootfs.sfs
+    - initrd
+    - vmlinuz
     os: "manjaro"
-    version: "18.1.0"
+    version: "current"
     flavor: "architect"
-    kernel: "manjaro-18.1.0-architect-kernel"
+    kernel: "manjaro-default-current"
