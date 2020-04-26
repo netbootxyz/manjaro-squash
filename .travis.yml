@@ -18,7 +18,7 @@ branches:
 if: type != pull_request AND tag IS blank
 script:
   - |
-    export EXTERNAL_VERSION=$(curl -sL https://manjaro.org/download/official/architect/ |awk -F '(manjaro-architect-|.iso)' '/manjaro-architect-/ {print $2;exit}')
+    export EXTERNAL_VERSION=$(curl -sL https://manjaro.osdn.io/architect/latest |awk -F '(manjaro-architect-|.iso)' '/manjaro-architect-/ {print $2;exit}')
   - wget https://raw.githubusercontent.com/netbootxyz/build-pipelines/master/build.sh && chmod +x build.sh
   - git config --local user.name $GIT_USERNAME
   - git config --local user.email $GIT_EMAIL
