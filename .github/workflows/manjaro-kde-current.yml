@@ -41,6 +41,17 @@ jobs:
         ./build.sh build ${{ env.BUILD_TYPE }}
         git tag ${{ env.GITHUB_TAG }}
 
+    - name: Create Release
+      if: steps.compare.conclusion == 'success'
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ env.GITHUB_TAG }}
+        release_name: ${{ env.GITHUB_TAG }}
+        draft: false
+        prerelease: false
+          
     - name: Create Release and Upload Assets
       if: steps.compare.conclusion == 'success'
       uses: svenstaro/upload-release-action@v2
