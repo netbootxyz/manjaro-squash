@@ -33,12 +33,12 @@ jobs:
     - name: Compare tag
       id: compare
       run: |
-        ./build.sh compare $GITHUB_TAG
+        ./build.sh compare ${{ env.GITHUB_TAG }}
 
     - name: Build if newer tag is available
       if: steps.compare.conclusion == 'success'
       run: |
-        ./build.sh build ${BUILD_TYPE}
+        ./build.sh build ${{ env.BUILD_TYPE }}
         git tag ${{ env.GITHUB_TAG }}
 
     - name: Create Release and Upload Assets
