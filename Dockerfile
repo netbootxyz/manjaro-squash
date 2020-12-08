@@ -1,3 +1,3 @@
-FROM  netbootxyz/mod-layers:manjaro-18
+FROM  netbootxyz/mod-layers:manjaro-20
 COPY /root /
 ENTRYPOINT [ "/build.sh" ]
