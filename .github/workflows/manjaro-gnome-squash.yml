@@ -29,18 +29,18 @@ jobs:
         echo "GITHUB_TAG=$GITHUB_TAG" >> $GITHUB_ENV
 
     - name: Compare tag
+      id: compare
       run: |
-        echo "NEW_VERSION=true" >> $GITHUB_ENV
-        ./build.sh compare ${GITHUB_TAG} || echo "NEW_VERSION=false" >> $GITHUB_ENV
+        ./build.sh compare ${GITHUB_TAG}
 
     - name: Build if newer tag is available
-      if: env.NEW_VERSION == 'true'
+      if: steps.compare.conclusion == 'success'
       run: |
         ./build.sh build ${BUILD_TYPE}
         git tag ${GITHUB_TAG}
 
     - name: Create Release and Upload Assets
-      if: env.NEW_VERSION == 'true'
+      if: steps.compare.conclusion == 'success'
       uses: svenstaro/upload-release-action@v2
       with:
         file: buildout/*
@@ -52,18 +52,18 @@ jobs:
         tag: ${GITHUB_TAG}
 
     - name: Generate endpoints
-      if: env.NEW_VERSION == 'true'
+      if: steps.compare.conclusion == 'success'
       run: |
         git config --global user.name netboot-ci
         git config --global user.email netboot-ci@netboot.xyz
         ./build.sh endpoints $GITHUB_TAG
 
     - name: Notify Discord on failure
-      if: failure()
+      if: steps.compare.conclusion == 'success' && failure()
       run: |
         ./build.sh discord failure
 
     - name: Notify Discord on completion
-      if: env.NEW_VERSION == 'true' && success()
+      if: steps.compare.conclusion == 'success' && success()
       run: |
         ./build.sh discord success
