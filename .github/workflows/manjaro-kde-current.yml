@@ -33,13 +33,13 @@ jobs:
     - name: Compare tag
       id: compare
       run: |
-        ./build.sh compare ${GITHUB_TAG}
+        ./build.sh compare $GITHUB_TAG
 
     - name: Build if newer tag is available
       if: steps.compare.conclusion == 'success'
       run: |
         ./build.sh build ${BUILD_TYPE}
-        git tag ${GITHUB_TAG}
+        git tag $GITHUB_TAG
 
     - name: Create Release and Upload Assets
       if: steps.compare.conclusion == 'success'
@@ -49,9 +49,9 @@ jobs:
         file_glob: true
         overwrite: true
         prerelease: false
-        release_name: ${GITHUB_TAG}
+        release_name: $GITHUB_TAG
         repo_token: ${{ secrets.GITHUB_TOKEN }}
-        tag: ${GITHUB_TAG}
+        tag: $GITHUB_TAG
 
     - name: Generate endpoints
       if: steps.compare.conclusion == 'success'
