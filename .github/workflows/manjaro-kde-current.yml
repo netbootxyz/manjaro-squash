@@ -39,7 +39,7 @@ jobs:
       if: steps.compare.conclusion == 'success'
       run: |
         ./build.sh build ${BUILD_TYPE}
-        git tag $GITHUB_TAG
+        git tag ${{ env.GITHUB_TAG }}
 
     - name: Create Release and Upload Assets
       if: steps.compare.conclusion == 'success'
@@ -49,16 +49,16 @@ jobs:
         file_glob: true
         overwrite: true
         prerelease: false
-        release_name: $GITHUB_TAG
+        release_name: ${{ env.GITHUB_TAG }}
         repo_token: ${{ secrets.GITHUB_TOKEN }}
-        tag: $GITHUB_TAG
+        tag: ${{ env.GITHUB_TAG }}
 
     - name: Generate endpoints
       if: steps.compare.conclusion == 'success'
       run: |
         git config --global user.name netboot-ci
         git config --global user.email netboot-ci@netboot.xyz
-        ./build.sh endpoints $GITHUB_TAG
+        ./build.sh endpoints ${{ env.GITHUB_TAG }}
 
     - name: Notify Discord on failure
       if: steps.compare.conclusion == 'success' && failure()
