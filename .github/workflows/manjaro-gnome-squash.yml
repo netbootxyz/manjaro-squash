@@ -6,12 +6,13 @@ on:
       - gnome-current
 
 env:
+  GITHUB_ENDPOINT: netbootxyz/manjaro-squash
   DISCORD_HOOK_URL: ${{ secrets.DISCORD_HOOK_URL }}
   GITHUB_SHA: ${{ github.sha }}
   BUILD_TYPE: initrd_patch
   DEBIAN_FRONTEND: noninteractive
   CI_TOKEN: ${{ secrets.CI_TOKEN }}
-
+  
 jobs:
   version-checker:
     name: Version Checker
@@ -27,13 +28,19 @@ jobs:
         export GITHUB_TAG=${EXTERNAL_VERSION}-$(echo ${GITHUB_SHA} | cut -c1-8)
         echo "GITHUB_TAG=$GITHUB_TAG" >> $GITHUB_ENV
 
-    - name: Compare tag and build if newer
+    - name: Compare tag
       run: |
-        ./build.sh compare ${GITHUB_TAG} || exit 0
+        echo "NEW_VERSION=true" >> $GITHUB_ENV
+        ./build.sh compare ${GITHUB_TAG} || echo "NEW_VERSION=false" >> $GITHUB_ENV
+
+    - name: Build if newer tag is available
+      if: env.NEW_VERSION == 'true'
+      run: |
         ./build.sh build ${BUILD_TYPE}
         git tag ${GITHUB_TAG}
 
     - name: Create Release and Upload Assets
+      if: env.NEW_VERSION == 'true'
       uses: svenstaro/upload-release-action@v2
       with:
         file: buildout/*
@@ -45,6 +52,7 @@ jobs:
         tag: ${GITHUB_TAG}
 
     - name: Generate endpoints
+      if: env.NEW_VERSION == 'true'
       run: |
         git config --global user.name netboot-ci
         git config --global user.email netboot-ci@netboot.xyz
@@ -56,6 +64,6 @@ jobs:
         ./build.sh discord failure
 
     - name: Notify Discord on completion
-      if: success()
+      if: env.NEW_VERSION == 'true' && success()
       run: |
         ./build.sh discord success
