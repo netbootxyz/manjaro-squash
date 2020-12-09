@@ -34,17 +34,16 @@ jobs:
       continue-on-error: true
       run: |
         wget https://raw.githubusercontent.com/netbootxyz/build-pipelines/master/build.sh && chmod +x build.sh
-        echo "NEW_VERSION=true" >> $GITHUB_ENV
-        ./build.sh compare ${{ env.GITHUB_TAG }} || echo "NEW_VERSION=false" >> $GITHUB_ENV
+        ./build.sh compare ${{ env.GITHUB_TAG }}
 
     - name: Build if newer tag is available
-      if: env.NEW_VERSION == 'true'
+      if: steps.compare.outcome == 'success'
       run: |
         ./build.sh build ${{ env.BUILD_TYPE }}
         git tag ${{ env.GITHUB_TAG }}
 
     - name: Create Release
-      if: env.NEW_VERSION == 'true'
+      if: steps.compare.outcome == 'success'
       uses: actions/create-release@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -55,7 +54,7 @@ jobs:
         prerelease: false
           
     - name: Create Release and Upload Assets
-      if: env.NEW_VERSION == 'true'
+      if: steps.compare.outcome == 'success'
       uses: svenstaro/upload-release-action@v2
       with:
         file: buildout/*
@@ -67,18 +66,18 @@ jobs:
         tag: ${{ env.GITHUB_TAG }}
 
 #    - name: Generate endpoints
-#      if: env.NEW_VERSION == 'true'
+#      if: steps.compare.conclusion == 'success'
 #      run: |
 #        git config --global user.name netboot-ci
 #        git config --global user.email netboot-ci@netboot.xyz
 #        ./build.sh endpoints ${{ env.GITHUB_TAG }}
 
     - name: Notify Discord on failure
-      if: env.NEW_VERSION == 'true' && failure()
+      if: steps.compare.outcome == 'success' && failure()
       run: |
         ./build.sh discord failure
 
     - name: Notify Discord on completion
-      if: env.NEW_VERSION == 'true' && success()
+      if: steps.compare.outcome == 'success' && success()
       run: |
         ./build.sh discord success
