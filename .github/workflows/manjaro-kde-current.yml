@@ -22,17 +22,18 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - name: Retrieve latest version from upstream and set tags
+    - name: Retrieve latest version from upstream and set vars
       run: |
         export EXTERNAL_VERSION=$(curl -sL https://manjaro.org/downloads/official/kde/ |awk -F '(manjaro-kde-|.iso)' '/manjaro-kde-/ {print $2;exit}')
         echo "EXTERNAL_VERSION=$EXTERNAL_VERSION" >> $GITHUB_ENV
-        wget https://raw.githubusercontent.com/netbootxyz/build-pipelines/master/build.sh && chmod +x build.sh
         export GITHUB_TAG=${EXTERNAL_VERSION}-$(echo ${GITHUB_SHA} | cut -c1-8)
         echo "GITHUB_TAG=$GITHUB_TAG" >> $GITHUB_ENV
 
     - name: Compare tag
       id: compare
+      continue-on-error: true
       run: |
+        wget https://raw.githubusercontent.com/netbootxyz/build-pipelines/master/build.sh && chmod +x build.sh
         ./build.sh compare ${{ env.GITHUB_TAG }}
 
     - name: Build if newer tag is available
