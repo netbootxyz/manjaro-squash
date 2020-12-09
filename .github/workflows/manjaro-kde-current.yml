@@ -71,12 +71,12 @@ jobs:
         git config --global user.email netboot-ci@netboot.xyz
         ./build.sh endpoints ${{ env.GITHUB_TAG }}
 
-#    - name: Notify Discord on failure
-#      if: steps.compare.outcome == 'success' && steps.compare.conclusion == 'success' && failure()
-#      run: |
-#        ./build.sh discord failure
+    - name: Notify Discord on failure
+      if: failure()
+      run: |
+        ./build.sh discord failure
 
-#    - name: Notify Discord on completion
-#      if: steps.compare.outcome == 'success' && steps.compare.conclusion == 'success' && success()
-#      run: |
-#        ./build.sh discord success
+    - name: Notify Discord on completion
+      if: steps.compare.outcome == 'success' && steps.compare.conclusion == 'success' && success()
+      run: |
+        ./build.sh discord success
