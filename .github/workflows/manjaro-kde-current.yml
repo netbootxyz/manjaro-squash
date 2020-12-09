@@ -66,12 +66,12 @@ jobs:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         tag: ${{ env.GITHUB_TAG }}
 
-    - name: Generate endpoints
-      if: env.NEW_VERSION == 'true'
-      run: |
-        git config --global user.name netboot-ci
-        git config --global user.email netboot-ci@netboot.xyz
-        ./build.sh endpoints ${{ env.GITHUB_TAG }}
+#    - name: Generate endpoints
+#      if: env.NEW_VERSION == 'true'
+#      run: |
+#        git config --global user.name netboot-ci
+#        git config --global user.email netboot-ci@netboot.xyz
+#        ./build.sh endpoints ${{ env.GITHUB_TAG }}
 
     - name: Notify Discord on failure
       if: env.NEW_VERSION == 'true' && failure()
