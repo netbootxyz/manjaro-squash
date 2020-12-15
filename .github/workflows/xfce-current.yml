@@ -11,7 +11,6 @@ env:
   BRANCH: xfce-current
   GITHUB_ENDPOINT: netbootxyz/manjaro-squash
   DISCORD_HOOK_URL: ${{ secrets.DISCORD_HOOK_URL }}
-  GITHUB_SHA: ${{ github.sha }}
   BUILD_TYPE: initrd_patch
   DEBIAN_FRONTEND: noninteractive
   CI_TOKEN: ${{ secrets.CI_TOKEN }}
@@ -25,6 +24,11 @@ jobs:
       with:
         ref: xfce-current
 
+    - name: Get SHA of actual branch instead of master
+      run: |
+        export GITHUB_SHA=$(git rev-parse HEAD)
+        echo "GITHUB_SHA=$GITHUB_SHA" >> $GITHUB_ENV
+        
     - name: Retrieve latest version from upstream and set vars
       run: |
         export EXTERNAL_VERSION=$(sudo bash version.sh)
