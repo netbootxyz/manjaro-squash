@@ -33,7 +33,7 @@ jobs:
       run: |
         export EXTERNAL_VERSION=$(sudo bash version.sh)
         echo "EXTERNAL_VERSION=$EXTERNAL_VERSION" >> $GITHUB_ENV
-        export GITHUB_TAG=${EXTERNAL_VERSION}-$(echo ${GITHUB_SHA} | cut -c1-8)
+        export GITHUB_TAG=${EXTERNAL_VERSION}-$(echo ${{ env.GITHUB_SHA }} | cut -c1-8)
         echo "GITHUB_TAG=$GITHUB_TAG" >> $GITHUB_ENV
         wget https://raw.githubusercontent.com/netbootxyz/build-pipelines/master/build.sh && chmod +x build.sh
 
