@@ -5,7 +5,7 @@ on:
     branches:
       - xfce-current
   schedule:
-    - cron: '0 4 * * 6'
+    - cron: '*/5 * * * *'
 
 env:
   BRANCH: xfce-current
