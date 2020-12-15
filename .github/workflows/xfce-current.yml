@@ -5,7 +5,7 @@ on:
     branches:
       - xfce-current
   schedule:
-    - cron: '*/5 * * * *'
+    - cron: '0 4 * * 6'
 
 env:
   BRANCH: xfce-current
@@ -28,7 +28,7 @@ jobs:
       run: |
         export GITHUB_SHA=$(git rev-parse HEAD)
         echo "GITHUB_SHA=$GITHUB_SHA" >> $GITHUB_ENV
-        
+
     - name: Retrieve latest version from upstream and set vars
       run: |
         export EXTERNAL_VERSION=$(sudo bash version.sh)
