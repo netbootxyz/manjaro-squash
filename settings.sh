@@ -1,4 +1,4 @@
-URL="https://osdn.net/dl/manjaro/manjaro-gnome-REPLACE_VERSION.iso"
+URL="https://sourceforge.net/projects/manjarolinux/files/gnome/21.0/manjaro-gnome-REPLACE_VERSION.iso"
 TYPE=file
 CONTENTS="\
 manjaro/x86_64/livefs.sfs|livefs.sfs
