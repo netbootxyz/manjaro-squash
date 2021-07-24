@@ -87,4 +87,3 @@ jobs:
       if: steps.compare.outcome == 'success' && steps.compare.conclusion == 'success' && success()
       run: |
         ./build.sh discord success
-
