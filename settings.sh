@@ -1,4 +1,4 @@
-URL="https://sourceforge.net/projects/manjarolinux/files/xfce/21.1.0/manjaro-xfce-REPLACE_VERSION.iso"
+URL="https://sourceforge.net/projects/manjarolinux/files/xfce/21.1.4/manjaro-xfce-REPLACE_VERSION.iso"
 TYPE=file
 CONTENTS="\
 manjaro/x86_64/livefs.sfs|livefs.sfs
