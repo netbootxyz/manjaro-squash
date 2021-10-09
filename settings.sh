@@ -1,5 +1,5 @@
-URL="https://sourceforge.net/projects/manjarolinux/files/gnome/21.1.4/manjaro-gnome-REPLACE_VERSION.iso"
-TYPE=file
+URL="https://download.manjaro.org/gnome/REPLACE_SECONDARY_VERSION/manjaro-gnome-REPLACE_VERSION.iso.torrent"
+TYPE=torrent
 CONTENTS="\
 manjaro/x86_64/livefs.sfs|livefs.sfs
 manjaro/x86_64/rootfs.sfs|rootfs.sfs
