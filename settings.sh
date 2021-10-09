@@ -1,4 +1,4 @@
-URL="https://download.manjaro.org/kde/REPLACE_SECONDARY_VERSION/manjaro-kde-REPLACE_VERSION.iso.torrent
+URL="https://download.manjaro.org/kde/REPLACE_SECONDARY_VERSION/manjaro-kde-REPLACE_VERSION.iso.torrent"
 TYPE=torrent
 CONTENTS="\
 manjaro/x86_64/livefs.sfs|livefs.sfs
