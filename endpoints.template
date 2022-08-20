@@ -9,6 +9,6 @@ endpoints:
     - initrd
     - vmlinuz
     os: "manjaro"
-    version: "REPLACE_VERSION"
+    version: "current"
     flavor: "kde"
     kernel: "manjaro-kde-current"
