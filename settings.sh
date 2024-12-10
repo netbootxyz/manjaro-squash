@@ -9,4 +9,4 @@ boot/initramfs-x86_64.img|initrd
 boot/vmlinuz-x86_64|vmlinuz"
 EXTRACT_INITRD="true"
 INITRD_NAME="initrd"
-INITRD_TYPE="arch-xz"
+INITRD_TYPE="zstd"
