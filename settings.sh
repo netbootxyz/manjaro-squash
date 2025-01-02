@@ -10,3 +10,4 @@ boot/vmlinuz-x86_64|vmlinuz"
 EXTRACT_INITRD="true"
 INITRD_NAME="initrd"
 INITRD_TYPE="uncomp"
+
